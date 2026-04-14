@@ -1,49 +1,20 @@
-1) Create folder & initialize Git repository
-
-Create folder:
-
+🔹 1) Initialize Git repository
 mkdir ds-project
 cd ds-project
 
-Open Git Bash inside folder and type:
+Open Git Bash:
 
 git config --global user.name "Aarya7206g"
 git config --global user.email "aarya.gaikwad.aids.2023@vpkbiet.org"
 
 git init
-2) Create repository on GitHub & connect
-Go to GitHub → create repo: ds-project
-Copy repo link
-
-In Git Bash:
-
+🔹 2) Create GitHub repo & connect
+Create repo: ds-project on GitHub
+Copy link
 git remote add origin https://github.com/Aarya7206g/ds-project.git
-3) Create program1.py (Even/Odd program)
-touch program1.py
-code program1.py
-
-Write code:
-
-num = int(input("Enter a number: "))
-
-if num % 2 == 0:
-    print("Even number")
-else:
-    print("Odd number")
-
-Save file
-
-4) Add, commit & push code
-git add program1.py
-git commit -m "Added even odd program"
-git branch -M main
-git push -u origin main
-
-👉 Now check your GitHub repo → file will be visible
-
-5) Create new branch GIT-EXAM
-git checkout -b GIT-EXAM
-6) Create program2.py (Reverse string)
+🔹 3) Create branch GIT-EXAM-1
+git checkout -b GIT-EXAM-1
+🔹 4) Create program2.py (Palindrome check)
 touch program2.py
 code program2.py
 
@@ -51,45 +22,62 @@ Write code:
 
 text = input("Enter a string: ")
 
-reverse = text[::-1]
+if text == text[::-1]:
+    print("Palindrome")
+else:
+    print("Not a palindrome")
+🔹 5) Create program1.py (Squares 1–10)
+touch program1.py
+code program1.py
 
-print("Reversed string is:", reverse)
+Write code:
 
-Save file
+for i in range(1, 11):
+    print(i, "square is", i * i)
+🔹 6) Commit & push to GitHub
+git add .
+git commit -m "Added palindrome and squares program"
+git branch -M main
+git push -u origin main
 
-7) Add, commit & push to GIT-EXAM branch
-git add program2.py
-git commit -m "Added reverse string program"
-git push origin GIT-EXAM
-8) Check difference between branches
+👉 Check GitHub → both files visible
 
-Switch branches:
+🔹 7) Create new branch GIT-EXAM-2
+git checkout -b GIT-EXAM-2
+🔹 8) Pull changes from GIT-EXAM-1
+git pull origin GIT-EXAM-1
+🔹 9) Create program2.py again (Palindrome)
+touch program2.py
+code program2.py
 
-git checkout main
+Write (same or slightly modified):
 
-👉 You will see:
+text = input("Enter string: ")
 
-Only program1.py
+rev = "".join(reversed(text))
 
-Now switch back:
+if text == rev:
+    print("Palindrome")
+else:
+    print("Not palindrome")
+🔹 10) Modify program1.py (to create conflict)
 
-git checkout GIT-EXAM
+Open file:
 
-👉 You will see:
+code program1.py
 
-program1.py + program2.py
+Modify code like this:
 
-You can also use:
+for i in range(1, 11):
+    print("Square of", i, "is", i ** 2)
+🔹 11) Commit & push changes
+git add .
+git commit -m "Modified program1 and updated palindrome"
+git push origin GIT-EXAM-2
+🔹 12) Demonstrate conflict (important step)
 
-git diff main GIT-EXAM
-9) Create Pull Request (Merge GIT-EXAM → main)
+Now try merging:
 
-On GitHub:
-
-Go to your repo
-Click Compare & Pull Request
-Select:
-Base: main
-Compare: GIT-EXAM
-Click Create Pull Request
-Click Merge Pull Request
+git checkout GIT-EXAM-1
+git merge GIT-EXAM-2
+git diff GIT-EXAM-1 GIT-EXAM-2
